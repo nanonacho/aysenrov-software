@@ -23,7 +23,8 @@ function Header() {
                             <Link className="nav-link active" aria-current="page" to="">Inicio</Link>
                         </li>
                     
-                    {!auth.user && (
+                    {auth?.user?.role === "admin" && (
+                        
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="users">Usuarios</Link>
                         </li>
@@ -31,13 +32,12 @@ function Header() {
                     </ul>
                     {auth.user && (
                         <form className="d-flex">
-                            <button onClick={handleLogout} className="btn btn-outline-dark me-2">Sign Out</button>
+                            <button onClick={handleLogout} className="btn btn-outline-dark me-2">Cerrar Sesión</button>
                         </form>
                     )}
                     {!auth.user && (
                         <form className="d-flex">
-                            <Link className="btn btn-outline-dark me-2" to="register" type="button">Sign Up</Link>
-                            <Link className="btn btn btn-outline-success" to="login" type="button">Sign In</Link>
+                            <Link className="btn btn btn-outline-success" to="login" type="button">Iniciar Sesión</Link>
                         </form>
                     )}
                 </div>
