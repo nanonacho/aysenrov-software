@@ -32,6 +32,10 @@ function Login() {
         .catch(error => {
             setIsLoading(false)
             setError(true)
+            setUserData({
+                ...userData,
+                "password": ""
+            })
             console.error("Error al iniciar sesión")
         })
     }
@@ -60,7 +64,7 @@ function Login() {
 
                                 <div className="mb-3">
                                     <label htmlFor="password" className="form-label">Contraseña</label>
-                                    <input onChange={handleChange} type="password" className="form-control" name="password" id="password" placeholder="*********" required/>
+                                    <input onChange={handleChange} value={userData.password} type="password" className="form-control" name="password" id="password" placeholder="*********" required/>
                                 </div>
 
                                 <div className="form-group">
