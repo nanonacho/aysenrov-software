@@ -74,5 +74,5 @@ exports.login = async (req, res) => {
     // Create token
     const token = jwt.sign({rut: user.rut, id: user._id}, process.env.TOKEN_SECRET)
     
-    setTimeout( () => {res.header("auth-token", token).status(200).send({ error: null, data: token })}, 5000)
+    setTimeout( () => {res.header("auth-token", token).status(200).send({ error: null, data: {token: token, role: user.role}})}, 5000)
 }

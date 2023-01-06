@@ -31,6 +31,12 @@ const schema = mongoose.Schema({
         required: true,
         min: 5,
         max: 255
+    },
+    role: {
+        type: Number,
+        required: true,
+        min: 4,
+        max: 4
     }
 })
 

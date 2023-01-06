@@ -28,7 +28,8 @@ exports.postUser = async (req, res) => {
         name: req.body.name,
         lastname: req.body.lastname,
         email: req.body.email,
-        rut: req.body.rut
+        rut: req.body.rut,
+        role: req.body.role
     })
     try {
         await user.save()
@@ -37,6 +38,18 @@ exports.postUser = async (req, res) => {
         res.status(400).send({error: error, data: null})
     }
     
+}
+
+exports.putUser = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, { useFindAndModify: false })
+        if (user == null) res.status(404).send({error: "User not found", data: null})
+        else {
+            res.status(200).send({error: null, data: user})
+        }
+    } catch (error) {
+        res.status(400).send({error: error, data: null})
+    }
 }
 
 exports.deleteUser = async (req, res) => {
