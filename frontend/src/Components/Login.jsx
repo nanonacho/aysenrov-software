@@ -25,8 +25,7 @@ function Login() {
         .then(res => {
             setIsLoading(false)
             console.log(res)
-            if (userData.email === "ignacio.alvaradome@gmail.com") auth.login({email: userData.email, token: res.data.data, role: "admin"})
-            else auth.login({email: userData.email, token: res.data.data, role: "user"})
+            auth.login({email: userData.email, token: res.data.data.token, role: res.data.data.role})
             navigate("/")
         })
         .catch(error => {

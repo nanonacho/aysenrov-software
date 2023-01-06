@@ -23,8 +23,7 @@ function Header() {
                             <Link className="nav-link active" aria-current="page" to="">Inicio</Link>
                         </li>
                     
-                    {auth?.user?.role === "admin" && (
-                        
+                    {auth?.user?.role == 1111 && (
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="users">Usuarios</Link>
                         </li>

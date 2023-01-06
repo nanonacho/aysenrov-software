@@ -16,7 +16,7 @@ const ProtectedRoutes = ({
       )
     )
     else return(
-      allowedRoles?.find((role) => auth?.user?.role?.includes(role)) ? (
+      allowedRoles?.find((role) => auth?.user?.role === role) ? (
         children ? children : <Outlet/>
       ) : (
         <Navigate to={redirectPath} replace />

@@ -16,7 +16,7 @@ function App() {
             <Route element={<ProtectedRoutes noAuth={true} />}>
               <Route path="/login" element={ <LoginPage/> } />
             </Route>
-            <Route element={<ProtectedRoutes allowedRoles={["admin"]}/>}>
+            <Route element={<ProtectedRoutes allowedRoles={[1111]}/>}>
               <Route path="/users" element={ <Users/> } />
             </Route> 
           </Routes>
