@@ -34,9 +34,7 @@ const schema = mongoose.Schema({
     },
     role: {
         type: Number,
-        required: true,
-        min: 4,
-        max: 4
+        required: true
     }
 })
 

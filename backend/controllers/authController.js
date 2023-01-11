@@ -10,7 +10,8 @@ const schemaRegister = Joi.object({
     lastname: Joi.string().min(2).max(255).required(),
     email: Joi.string().min(4).max(255).required().email(),
     password: Joi.string().min(6).max(1024).required(),
-    rut: Joi.string().min(6).max(255).required()
+    rut: Joi.string().min(6).max(255).required(),
+    role: Joi.number().required()
 })
 
 // Valid user object for login
@@ -44,7 +45,8 @@ exports.register = async (req, res) => {
         lastname: req.body.lastname,
         email: req.body.email,
         password: password,
-        rut: req.body.rut
+        rut: req.body.rut,
+        role: req.body.role
     })
     
     try {

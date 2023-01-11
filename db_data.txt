@@ -1,0 +1,7 @@
+Postgres cluster aysenrov-postgres created
+  Username:    postgres
+  Password:    v1aq1wcVP5OZBl8
+  Hostname:    aysenrov-postgres.internal
+  Proxy port:  5432
+  Postgres port:  5433
+  Connection string: postgres://postgres:v1aq1wcVP5OZBl8@aysenrov-postgres.internal:5432

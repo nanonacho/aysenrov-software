@@ -63,14 +63,14 @@ function Login() {
 
                                 <div className="mb-3">
                                     <label htmlFor="password" className="form-label">Contraseña</label>
-                                    <input onChange={handleChange} value={userData.password} type="password" className="form-control" name="password" id="password" placeholder="*********" required/>
+                                    <input onChange={handleChange} type="password" className="form-control" name="password" id="password" placeholder="*********" required/>
                                 </div>
 
                                 <div className="form-group">
                                     
                                     { isLoading ? ( 
-                                    <button class="btn btn-primary" type="button" disabled>
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    <button className="btn btn-primary" type="button" disabled>
+                                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                         Iniciar Sesión
                                     </button>
                                     ) : (

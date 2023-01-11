@@ -1,7 +1,7 @@
 import "bootswatch/dist/flatly/bootstrap.min.css"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { AuthProvider } from "./Auth/auth"
-import { IndexPage, LoginPage, Users } from "./Routes/IndexRoutes"
+import { Employees, IndexPage, LoginPage, Users } from "./Routes/IndexRoutes"
 import Header from "./Components/Header"
 import ProtectedRoutes from "./Components/ProtectedRoutes"
 
@@ -18,6 +18,9 @@ function App() {
             </Route>
             <Route element={<ProtectedRoutes allowedRoles={[1111]}/>}>
               <Route path="/users" element={ <Users/> } />
+            </Route>
+            <Route element={<ProtectedRoutes allowedRoles={[1111]}/>}>
+              <Route path="/employees" element={ <Employees/> } />
             </Route> 
           </Routes>
         </AuthProvider>

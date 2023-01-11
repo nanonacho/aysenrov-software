@@ -1,4 +1,5 @@
 const express = require("express")
+const pg = require("./config/pg")
 const mongoose = require("mongoose")
 const cors = require("cors")
 
@@ -7,6 +8,8 @@ require('dotenv').config()
 // Import routes
 const user = require("./routes/user")
 const auth = require("./routes/auth")
+const employee = require("./routes/employee")
+const employeeReport = require("./routes/employeeReport")
 
 // Import middlewares
 //const verifytoken = require("./middlewares/validate-token")
@@ -25,9 +28,18 @@ mongoose
     //routes
     app.use("/user", user)
     app.use("/auth", auth)
+    app.use("/employee", employee)
+    app.use("/employee-report", employeeReport)
 
     //server
-    app.listen(port, () =>
+    pg.sync().then(() => {
+      pg.authenticate().then(() => console.log("Conexión postgres exitosa ")).catch("Conexión postgres fallida")
+      app.listen(port, () =>
       console.log(`Server running on port ${port}, http://localhost:${port}`)
-    )
+      )
+    })
+    
   })
+
+
+
