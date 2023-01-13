@@ -1,31 +1,27 @@
 import axios from "axios"
 import { useRef, useState } from "react"
 
-function CreateUser(props) {
+function CreateEmployeeReport(props) {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const [user, setUser] = useState({})
+    const [employeeReport, setEmployeeReport] = useState({"employee_id": props.employee_id})
     
-    const rut = useRef(null)
-    const name = useRef(null)
-    const lastname = useRef(null)
-    const email = useRef(null)
-    const password = useRef(null)
-    const role = useRef(null)
+    const date = useRef(null)
+    const customer = useRef(null)
+    const place = useRef(null)
+    const description = useRef(null)
 
     const resetForm = () => {
-        rut.current.value = ""
-        name.current.value = ""
-        lastname.current.value = ""
-        email.current.value = ""
-        password.current.value = ""
-        role.current.value = ""
+        date.current.value = ""
+        customer.current.value = ""
+        place.current.value = ""
+        description.current.value = ""
     }
 
     const handleChange = (e) => {
-        setUser({
-            ...user,
+        setEmployeeReport({
+            ...employeeReport,
             [e.target.name]: e.target.value.trim()
         })
     }
@@ -33,7 +29,7 @@ function CreateUser(props) {
     const handleSubmit = (e) => {
         e.preventDefault()
         setIsLoading(true)
-        axios.post("http://localhost:4000/auth/register", user)
+        axios.post("http://localhost:4000/employee-report", employeeReport)
         .then(res => {
             setIsLoading(false)
             setError(false)
@@ -44,68 +40,55 @@ function CreateUser(props) {
             console.log(error)
             setIsLoading(false)
             setError(true)
-            console.error("Error al crear usuario")
+            console.error("Error al crear observación de trabajador")
         })
         resetForm()
-        setUser({})
+        setEmployeeReport({"employee_id": props.employee_id})
     }
 
     const handleClose = () => {
         setIsLoading(false)
         setError(null)
-        setUser({})
+        setEmployeeReport({"employee_id": props.employee_id})
         resetForm()
     }
 
     return (
     <div className="d-flex ">
-        <button data-bs-toggle="modal" data-bs-target="#addmodal" className="btn btn-info" >Crear Usuario</button>
+        <button data-bs-toggle="modal" data-bs-target="#addmodal" className="btn btn-info m-1" >Crear Observación</button>
             <div className="modal fade" id="addmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="staticBackdropLabel">Crear Usuario</h1>
+                            <h1 className="modal-title fs-5" id="staticBackdropLabel">Crear Observación</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleClose}></button>
                         </div>
                         <div className="modal-body">
                         {error === true && (
-                                <div className="alert alert-danger" role="alert"> Error al crear usuario! </div>
+                                <div className="alert alert-danger" role="alert"> Error al crear observación! </div>
                         ) 
                         }
                         {      
                         error === false && (
-                            <div className="alert alert-primary" role="alert"> Usuario Creado</div>
+                            <div className="alert alert-primary" role="alert"> Observación Creada</div>
                         )
                         }
                         <form onSubmit={handleSubmit}>
                             <div className="form-group pt-3">
-                                <label>Rut</label>
-                                <input type="text" ref={rut} onChange={handleChange} name="rut" className="form-control" placeholder="Ingresa el rut (con guión y sin puntos                                                      )" />
+                                <label>Fecha</label>
+                                <input type="date" ref={date} onChange={handleChange} name="date" className="form-control" placeholder="Ingresa la fecha" />
                             </div>
                             <div className="form-group pt-3">
-                                <label>Nombre</label>
-                                <input type="text" ref={name} onChange={handleChange} name="name" defaultValue="" className="form-control" placeholder="Ingresa el nombre" />
+                                <label>Cliente</label>
+                                <input type="text" ref={customer} onChange={handleChange} name="customer" className="form-control" placeholder="Ingresa el cliente" />
                             </div>
                             <div className="form-group pt-3">
-                                <label>Apellido</label>
-                                <input type="text" ref={lastname} onChange={handleChange} defaultValue="" name="lastname" className="form-control" placeholder="Ingresa el apellido"/>
+                                <label>Lugar</label>
+                                <input type="text" ref={place} onChange={handleChange} name="place" className="form-control" placeholder="Ingresa el lugar"/>
                             </div>
                             <div className="form-group pt-3">
-                                <label>Email</label>
-                                <input type="email" ref={email} onChange={handleChange} defaultValue="" name="email" className="form-control" placeholder="Ingresa el email"/>
-                            </div>
-                            <div className="form-group pt-3">
-                                <label>Contraseña</label>
-                                <input type="password" ref={password} onChange={handleChange} defaultValue="" name="password" className="form-control" placeholder="Ingresa la contraseña"/>
-                            </div>
-                            <div className="form-group pt-3">
-                                <label>Permisos</label>
-                                <select name="role" ref={role} className="form-select" aria-label="Default select example" onChange={handleChange}>
-                                    <option> Seleccione una opción</option>
-                                    <option value={1111}>Administrador</option>
-                                    <option value={2222}>Recursos Humanos</option>
-                                    <option value={3333}>Finanzas</option>
-                                </select>
+                                <label>Descripción</label>
+                                <input type="description" ref={description} onChange={handleChange} defaultValue="" name="description" className="form-control" placeholder="Ingresa la descripción"/>
                             </div>
                         </form>
                         </div>
@@ -137,4 +120,4 @@ function CreateUser(props) {
     )
 }
 
-export default CreateUser
+export default CreateEmployeeReport

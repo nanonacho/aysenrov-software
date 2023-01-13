@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import EmployeesProfile from "./EmployeeProfile"
+import CreateEmployee from "./CreateEmployee"
 
 function EmployeesTable() {
     const [employees, setEmployees] = useState(null)
@@ -10,12 +11,6 @@ function EmployeesTable() {
 
     const handleReload = () => setReload(reload => !reload)
     
-    const roles = {
-        1111: "Administrador",
-        2222: "Recursos Humanos",
-        3333: "Finanzas"
-    }
-    
     const handleProfile = (employee) => setProfile(employee)
 
     useEffect(() => {
@@ -23,7 +18,7 @@ function EmployeesTable() {
         .then(res => {
             setEmployees(res.data.data)
         })
-    }, [reload]) 
+    }, [profile, reload]) 
 
     return (
         <div className="container">
@@ -39,6 +34,7 @@ function EmployeesTable() {
                 !profile ? (
                     <div>
                         <div className="d-flex align-items-center justify-content-center pb-4"><h1>Trabajadores</h1></div>
+                        <CreateEmployee handleReload={handleReload}/>
                         <table className="table">
                             <thead>
                                 <tr>
@@ -76,8 +72,8 @@ function EmployeesTable() {
                     </div>
                 )  : (
                     <div>
-                            <EmployeesProfile employee={profile}/>
                             <button className="btn btn-danger" onClick={() => setProfile(null)}>Cerrar</button>
+                            <EmployeesProfile employee={profile}/>
                     </div>
                 )
             )

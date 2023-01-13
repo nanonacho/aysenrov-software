@@ -2,42 +2,46 @@ const Sequelize = require("sequelize")
 const pg = require("../config/pg")
 const Employee = require("../models/Employee")
 
-const EmployeeReport = pg.define("employee_report", {
+const Contract = pg.define("contract", {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    customer: {
+    position: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    date: {
+    base_salary: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    type: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    start_date: {
         type: Sequelize.DATEONLY,
         allowNull: false
     },
-    place: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    description: {
-        type: Sequelize.STRING,
+    end_date: {
+        type: Sequelize.DATEONLY,
         allowNull: false
     }
 })
 
-Employee.hasOne(EmployeeReport, {
+Employee.hasOne(Contract, {
     foreignKey: {
         name: "employee_id",
         allowNull: false
     }
   })
 
-EmployeeReport.belongsTo(Employee, {
+Contract.belongsTo(Employee, {
     foreignKey: {
         name: "employee_id",
         allowNull: false
     }
   })
 
-module.exports = EmployeeReport
+module.exports = Contract

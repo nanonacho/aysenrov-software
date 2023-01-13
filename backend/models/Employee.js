@@ -31,6 +31,10 @@ const Employee = pg.define("employee", {
         type: Sequelize.STRING,
         allowNull: false
     },
+    city: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     phone_number: {
         type: Sequelize.STRING,
         allowNull: false
@@ -45,7 +49,23 @@ const Employee = pg.define("employee", {
     },
     afp: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
+    },
+    salud: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    bank: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    account_type: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    account: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 })
 

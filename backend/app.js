@@ -10,6 +10,7 @@ const user = require("./routes/user")
 const auth = require("./routes/auth")
 const employee = require("./routes/employee")
 const employeeReport = require("./routes/employeeReport")
+const contract = require("./routes/contract")
 
 // Import middlewares
 //const verifytoken = require("./middlewares/validate-token")
@@ -30,6 +31,7 @@ mongoose
     app.use("/auth", auth)
     app.use("/employee", employee)
     app.use("/employee-report", employeeReport)
+    app.use("/contract", contract)
 
     //server
     pg.sync().then(() => {

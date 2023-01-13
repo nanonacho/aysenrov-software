@@ -5,7 +5,7 @@ function EmployeesProfile(props) {
 
     return (
         <div className="container row pt-5 pb-3">
-            <div className="col">
+            <div className="col-4">
                 <UpdateEmployee employee={props.employee}/>
             </div>
             <div className="col">

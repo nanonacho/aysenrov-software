@@ -33,6 +33,11 @@ function Header() {
                             <Link className="nav-link active" aria-current="page" to="employees">Trabajadores</Link>
                         </li>
                     )}
+                    {auth?.user?.role == 1111 && (
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="contracts">Contratos</Link>
+                        </li>
+                    )}
                     </ul>
                     {auth.user && (
                         <form className="d-flex">

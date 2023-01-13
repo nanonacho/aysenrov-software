@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import UpdateEmployee from "./UpdateEmployee"
+import UpdateEmployeeReport from "./UpdateEmployeeReport"
+import DeleteEmployeeReport from "./DeleteEmployeeReport"
+import CreateEmployeeReport from "./CreateEmployeeReport"
 
 function EmployeeReportsTable(props) {
     const [employeeReports, setEmployeeReports] = useState(null)
@@ -31,6 +33,7 @@ function EmployeeReportsTable(props) {
                 <div className="card-header">
                     Observaciones
                 </div>
+                <CreateEmployeeReport handleReload={handleReload} employee_id={props.employee.id}/>
                 <table className="table caption-top">
                     <thead>
                         <tr>
@@ -49,8 +52,15 @@ function EmployeeReportsTable(props) {
                             <td>{employeeReport.customer}</td>
                             <td>{employeeReport.place}</td> 
                             <td>{employeeReport.description}</td> 
+                            <td>
+                               <DeleteEmployeeReport key={index} index={index} employeeReport={employeeReport} handleReload={handleReload}/> 
+                            </td>
+                            <td>
+                                <UpdateEmployeeReport key={index} index={index} employeeReport={employeeReport} handleReload={handleReload}/>
+                            </td>  
                         </tr>
                         )}
+                        
                     </tbody>
                 </table>
             </div>

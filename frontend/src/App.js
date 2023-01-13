@@ -4,6 +4,7 @@ import { AuthProvider } from "./Auth/auth"
 import { Employees, IndexPage, LoginPage, Users } from "./Routes/IndexRoutes"
 import Header from "./Components/Header"
 import ProtectedRoutes from "./Components/ProtectedRoutes"
+import Contracts from "./Routes/Contracts"
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
             </Route>
             <Route element={<ProtectedRoutes allowedRoles={[1111]}/>}>
               <Route path="/employees" element={ <Employees/> } />
+            </Route>
+            <Route element={<ProtectedRoutes allowedRoles={[1111]}/>}>
+              <Route path="/contracts" element={ <Contracts/> } />
             </Route> 
           </Routes>
         </AuthProvider>
