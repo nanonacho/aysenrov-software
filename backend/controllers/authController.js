@@ -20,6 +20,9 @@ const schemaLogin = Joi.object({
     password: Joi.string().min(6).max(1024).required()
 })
 
+/*
+Functionality: Create a new user, verify the email and hash the password 
+*/
 exports.register = async (req, res) => {
     // Validate user
     const { error } = schemaRegister.validate(req.body)
@@ -57,6 +60,9 @@ exports.register = async (req, res) => {
     }
 }
 
+/*
+Functionality: Verify and validate email and password of one existent user.
+*/
 exports.login = async (req, res) => {
     // Validate user
     const { error } = schemaLogin.validate(req.body)
@@ -76,5 +82,5 @@ exports.login = async (req, res) => {
     // Create token
     const token = jwt.sign({rut: user.rut, id: user._id}, process.env.TOKEN_SECRET)
     
-    setTimeout( () => {res.header("auth-token", token).status(200).send({ error: null, data: {token: token, role: user.role}})}, 5000)
+    res.header("auth-token", token).status(200).send({ error: null, data: {token: token, role: user.role}})
 }

@@ -1,14 +1,14 @@
 import { useState } from "react"
 import axios from "axios"
 
-function DeleteEmployeeReport(props) {
+function DeleteObject(props) {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const handleRemoveClick = (e, employeeReportId) => {
+    const handleRemoveClick = (e, objectId) => {
         e.preventDefault()
         setIsLoading(true)
-        axios.delete(`http://localhost:4000/employee-report/${employeeReportId}`)
+        axios.delete(props.url + `${objectId}`)
         .then(res => {
             setIsLoading(false)
             setError(false)
@@ -18,10 +18,9 @@ function DeleteEmployeeReport(props) {
         .catch(error => {
             console.error(error)
             setIsLoading(false)
-            setError(true)
+            setError(true)     
         })
     }  
-
     return (
         <div>
             {
@@ -38,12 +37,12 @@ function DeleteEmployeeReport(props) {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="staticBackdropLabel">¿Estás seguro de eliminar la observación?</h1>
+                            <h1 className="modal-title fs-5" id="staticBackdropLabel">¿Estás seguro de eliminar?</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-target={"#deletemodal" + props.index}></button>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" data-bs-target={"#deletemodal" + props.index}>Cancelar</button>
-                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={e => handleRemoveClick(e, props.employeeReport.id)}>Eliminar</button>
+                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={e => handleRemoveClick(e, props.objectId)}>Eliminar</button>
                         </div>
                     </div>
                 </div>
@@ -52,4 +51,4 @@ function DeleteEmployeeReport(props) {
     )
 }
 
-export default DeleteEmployeeReport
+export default DeleteObject

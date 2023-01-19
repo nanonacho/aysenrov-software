@@ -1,0 +1,14 @@
+Contrato Individual de Trabajo
+
+En Aysén, a ${date}, entre la empresa AYSÉn ROV SPA RUT: 77.071.089-8, representada por don CARLOS ALFREDO DIAZ VARELA en su calidad de Representante legal cédula de identidad N° 10.490.921-3, con domicilio en Sargento Aldea #1149, comuna de Aysén, de la ciudad de Aysén, en adelante, "el empleador"; y don ${employee.name + " " + employee.lastname} de nacionalidad Chilena, cédula de identidad N° ${employee.rut}, de estado civil ${employee.estado_civil}, fecha de nacimiento ${employee.birth_date}, con el cargo ${contrac.position}, domiciliado en ${employee.address} y, en consecuencia, capaz de celebrar contrato de trabajo en adelante "el trabajador"; las partes han convenido celebrar el presente contrato de trabajo al tenor de las siguientes:
+
+CLÁUSULAS:
+
+PRIMERA.FUNCIÓM O LABOR.
+
+El trabajador se compremete a desempeñar el trabajo que se le encomienda de ${contract.position}
+
+SEGUNDA.LUGAR DE PRESTACIÓN DE SERVICIOS.
+El trabajador cumplirá las labores para las cuales fue contratado en cualquiera de los centros salmoneros que el empleador le asigne, conforme a la planificación y cumpliendo con las necesidades del cliente al cual le presete servicio en la XI región.
+
+Efectuada la comunicación respectiva, por cualquier medio, el trabajador deber

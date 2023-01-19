@@ -45,7 +45,7 @@ function Login() {
                 <aside className="col-sm-4">
                     <div className="card">
                         <article className="card-body">
-                            <h4 className="card-title text-center mb-4 mt-1">Sign in</h4>
+                            <h4 className="card-title text-center mb-4 mt-1">Iniciar Sesión</h4>
                             <hr/>
                             <form>
                                 

@@ -1,5 +1,8 @@
 const User = require("../models/User")
 
+/*
+Functionality: Get one user by rut 
+*/
 exports.getUser = async (req, res) => {
     try {
         const user = await User.findOne({ rut: req.params.rut })
@@ -12,6 +15,9 @@ exports.getUser = async (req, res) => {
     }
 }
 
+/*
+Functionality: Get all users 
+*/
 exports.getUsers = async (req, res) => {
     try {
         const users = await User.find()
@@ -23,6 +29,9 @@ exports.getUsers = async (req, res) => {
     }
 }
 
+/*
+Functionality: Create a new user
+*/
 exports.postUser = async (req, res) => {
     const user = new User({
         name: req.body.name,
@@ -40,6 +49,9 @@ exports.postUser = async (req, res) => {
     
 }
 
+/*
+Functionality: Find and update a existent user by id 
+*/
 exports.putUser = async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(req.params.id, req.body, { useFindAndModify: false })
@@ -52,6 +64,9 @@ exports.putUser = async (req, res) => {
     }
 }
 
+/*
+Functionality: Delete one user by id 
+*/
 exports.deleteUser = async (req, res) => {
     try {
         const response = await User.deleteOne({_id: req.params.id})

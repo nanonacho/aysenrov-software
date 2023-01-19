@@ -1,6 +1,9 @@
 const Employee = require("../models/Employee")
 const ChileanRutify = require("chilean-rutify")
 
+/*
+Functionality: Get one employee by id 
+*/
 exports.getEmployee = async (req, res) => {
     try {
         const employee = await Employee.findOne({ where: {id : req.params.id }})
@@ -13,6 +16,9 @@ exports.getEmployee = async (req, res) => {
     }
 }
 
+/*
+Functionality: Get all employees 
+*/
 exports.getEmployees = async (req, res) => {
     try {
         const employees = await Employee.findAll()
@@ -23,6 +29,9 @@ exports.getEmployees = async (req, res) => {
     }
 }
 
+/*
+Functionality: Create a new employee 
+*/
 exports.postEmployee = async (req, res) => {
     try {
         const employee = new Employee({
@@ -30,7 +39,7 @@ exports.postEmployee = async (req, res) => {
             lastname: req.body.lastname.toUpperCase(),
             email: req.body.email.toLowerCase(),
             rut: ChileanRutify.formatRut(req.body.rut),
-            position: req.body.position,
+            position: req.body.position.toUpperCase(),
             entry_date: req.body.entry_date,
             address: req.body.address,
             phone_number: req.body.phone_number,
@@ -51,6 +60,9 @@ exports.postEmployee = async (req, res) => {
     
 }
 
+/*
+Functionality: Find and update a employee by id
+*/
 exports.putEmployee = async (req, res) => {
     try {
         const employeeUpdated = req.body
@@ -62,6 +74,7 @@ exports.putEmployee = async (req, res) => {
         if (req.body.salud) employeeUpdated.salud = req.body.salud.toUpperCase()
         if (req.body.city) employeeUpdated.city = req.body.city.toUpperCase()
         if (req.body.bank) employeeUpdated.bank = req.body.bank.toUpperCase()
+        if (req.body.position) employeeUpdated.position = req.body.position.toUpperCase()
         if (req.body.account_type) employeeUpdated.account_type = req.body.account_type.toUpperCase()
         const employee = await Employee.update(employeeUpdated, { where: {id: req.params.id} })
         if (employee == 1) res.status(200).send({error: null, data: employee}) 
@@ -71,6 +84,9 @@ exports.putEmployee = async (req, res) => {
     }
 }
 
+/*
+Functionality: Delete one employee by id
+*/
 exports.deleteEmployee = async (req, res) => {
     try {
         const response = await Employee.destroy({where: {id: req.params.id}})

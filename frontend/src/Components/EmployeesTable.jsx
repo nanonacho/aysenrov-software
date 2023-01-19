@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import EmployeesProfile from "./EmployeeProfile"
 import CreateEmployee from "./CreateEmployee"
+import { Autocomplete, TextField, useThemeProps } from "@mui/material"
 
 function EmployeesTable() {
     const [employees, setEmployees] = useState(null)
@@ -18,11 +19,28 @@ function EmployeesTable() {
         .then(res => {
             setEmployees(res.data.data)
         })
-    }, [profile, reload]) 
+    }, [reload]) 
 
     return (
         <div className="container">
-        { 
+        {
+        (employees != null) && 
+        <div>
+            <div className="d-flex align-items-center justify-content-center pb-4"><h1>Trabajadores</h1></div>
+            <div className="d-flex align-items-center justify-content-center">
+                <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        options={employees}
+                        getOptionLabel={option => option.name + " " + option.lastname + " | " + option.rut}
+                        onChange={(e, profile) => setProfile(profile)}
+                        sx={{ width: 300 }}
+                        renderInput={(params) => <TextField {...params} label="Buscar Trabajador" />}
+                        />
+            </div>
+        </div>
+        }
+        {
         (employees == null) ? (
             <div className="d-flex justify-content-center">
                 <div className="spinner-border" role="status">
@@ -33,7 +51,7 @@ function EmployeesTable() {
             ) : (
                 !profile ? (
                     <div>
-                        <div className="d-flex align-items-center justify-content-center pb-4"><h1>Trabajadores</h1></div>
+                        
                         <CreateEmployee handleReload={handleReload}/>
                         <table className="table">
                             <thead>
@@ -73,10 +91,11 @@ function EmployeesTable() {
                 )  : (
                     <div>
                             <button className="btn btn-danger" onClick={() => setProfile(null)}>Cerrar</button>
-                            <EmployeesProfile employee={profile}/>
+                            <EmployeesProfile handleReload={handleReload} employee={profile}/>
                     </div>
                 )
-            )
+                
+                )
             }  
         </div>
     )

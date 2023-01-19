@@ -15,6 +15,7 @@ const contract = require("./routes/contract")
 // Import middlewares
 //const verifytoken = require("./middlewares/validate-token")
 
+// Connect to mongo and postgres, then the server was open
 const mongoDB = process.env.URL
 mongoose
   .connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })

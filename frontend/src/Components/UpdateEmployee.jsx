@@ -53,6 +53,7 @@ function UpdateEmployee(props) {
         axios.put(`http://localhost:4000/employee/${employeeId}`, employee)
         .then(res => {
             setIsLoading(false)
+            props.handleReload()
             setError(false)
             console.log(res)
         })
@@ -106,9 +107,11 @@ function UpdateEmployee(props) {
                 <div className="form-group pt-3">
                     <label>Cargo</label>
                     <select name="position" ref={position} defaultValue={employee.position} className="form-select" aria-label="Default select example" onChange={handleChange}>
-                        <option value="Piloto Rov">Piloto Rov</option>
-                        <option value="Gerente">Gerente</option>
-                        <option value="Jefe de Taller">Jefe de Taller</option>
+                        <option value="PILOTO ROV">Piloto Rov</option>
+                        <option value="GERENTE">Gerente</option>
+                        <option value="PRACTICANTE">Practicante</option>
+                        <option value="JEFE TALLER">Jefe Taller</option>
+                        <option value="JEFE OPERACIONES">Jefe Operaciones</option>
                     </select>
                 </div>
                 <div className="form-group pt-3">

@@ -76,7 +76,7 @@ function CreateEmployee(props) {
     }
 
     return (
-    <div className="d-flex ">
+    <div className="d-flex mt-4">
         <button data-bs-toggle="modal" data-bs-target="#addmodal" className="btn btn-info" >Crear Trabajador</button>
             <div className="modal fade" id="addmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog">

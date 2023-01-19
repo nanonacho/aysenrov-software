@@ -1,5 +1,8 @@
 const EmployeeReport = require("../models/EmployeeReport")
 
+/*
+Functionality: Get all employee reports of one employee by id 
+*/
 exports.getEmployeeReports = async (req, res) => {
     try {
         const employeeReport = await EmployeeReport.findAll({ where: {employee_id : req.params.employee_id }})
@@ -12,6 +15,9 @@ exports.getEmployeeReports = async (req, res) => {
     }
 }
 
+/*
+Functionality: Create a new employee report
+*/
 exports.postEmployeeReport = async (req, res) => {
     const employeeReport = new EmployeeReport({
         employee_id: req.body.employee_id,
@@ -28,6 +34,9 @@ exports.postEmployeeReport = async (req, res) => {
     }
 }
 
+/*
+Functionality: Find and update a existent employee report by id 
+*/
 exports.putEmployeeReport = async (req, res) => {
     try {
         const employeeReport = await EmployeeReport.update(req.body, { where: {id: req.params.id} })
@@ -38,6 +47,9 @@ exports.putEmployeeReport = async (req, res) => {
     }
 }
 
+/*
+Functionality: Delete one employee report by id 
+*/
 exports.deleteEmployeeReport = async (req, res) => {
     try {
         const response = await EmployeeReport.destroy({where: {id: req.params.id}})
