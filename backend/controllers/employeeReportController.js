@@ -5,7 +5,7 @@ Functionality: Get all employee reports of one employee by id
 */
 exports.getEmployeeReports = async (req, res) => {
     try {
-        const employeeReport = await EmployeeReport.findAll({ where: {employee_id : req.params.employee_id }})
+        const employeeReport = await EmployeeReport.findAll({ where: {employee_id : req.params.employee_id }, order: [ [ "date", "DESC" ]]})
         if (employeeReport == null) res.status(404).send({error: "Employee Reports not found", data: null})
         else {
             res.status(200).send({error: null, data: employeeReport})

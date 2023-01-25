@@ -27,6 +27,18 @@ const Contract = pg.define("contract", {
     end_date: {
         type: Sequelize.DATEONLY,
         allowNull: true
+    },
+    afp: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    salud: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    signature_date: {
+        type: Sequelize.DATEONLY,
+        allowNull: false
     }
 })
 

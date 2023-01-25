@@ -9,7 +9,7 @@ Functionality: Get all contracts of one employee by id
 */
 exports.getContract = async (req, res) => {
     try {
-        const contract = await Contract.findAll({ where: {employee_id : req.params.employee_id }})
+        const contract = await Contract.findAll({ where: {employee_id : req.params.employee_id }, order: [ [ 'start_date', 'DESC' ]]})
         if (contract == null) res.status(404).send({error: "Contracts not found", data: null})
         else {
             res.status(200).send({error: null, data: contract})
@@ -43,7 +43,10 @@ exports.postContract = async (req, res) => {
             type: req.body.type.toUpperCase(),
             start_date: req.body.start_date,
             end_date: req.body.end_date == "" ? null: req.body.end_date,
-            employee_id: req.body.employee_id
+            employee_id: req.body.employee_id,
+            signature_date: req.body.signature_date.toUpperCase(),
+            afp: req.body.afp.toUpperCase(),
+            salud: req.body.salud.toUpperCase()
         })
     
         await contract.save()
@@ -62,6 +65,8 @@ exports.putContract = async (req, res) => {
         const contractUpdated = req.body
         if (req.body.position) contractUpdated.position = req.body.position.toUpperCase()
         if (req.body.type) contractUpdated.type = req.body.type.toUpperCase()
+        if (req.body.afp) contractUpdated.afp = req.body.afp.toUpperCase()
+        if (req.body.salud) contractUpdated.salud = req.body.salud.toUpperCase()
         const contract = await Contract.update(contractUpdated, { where: {id: req.params.id} })
         if (contract == 1) res.status(200).send({error: null, data: contract}) 
         else res.status(404).send({error: "Contract not found", data: null})
