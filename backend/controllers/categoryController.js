@@ -33,7 +33,7 @@ exports.postCategory = async (req, res) => {
 /*
 Functionality: Find and update a category by id
 */
-exports.putProduct = async (req, res) => {
+exports.putCategory = async (req, res) => {
     try {
         const categoryUpdated = req.body
         if (req.body.category) categoryUpdated.name = req.body.name.toUpperCase()

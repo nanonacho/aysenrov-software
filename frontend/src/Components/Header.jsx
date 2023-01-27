@@ -44,6 +44,21 @@ function Header() {
                             <Link className="nav-link active" aria-current="page" to="contracts">Contratos</Link>
                         </li>
                     )}
+                    {auth?.user?.role === 1111 && (
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="categories">Categorias</Link>
+                        </li>
+                    )}
+                    {auth?.user?.role === 1111 && (
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="inventory">Inventario</Link>
+                        </li>
+                    )}
+                    {auth?.user?.role === 1111 && (
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="customers">Clientes</Link>
+                        </li>
+                    )}
                     </ul>
                     {auth.user && (
                         <form className="d-flex">

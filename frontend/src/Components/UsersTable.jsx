@@ -9,6 +9,7 @@ function UsersTable() {
         getUrl={"http://localhost:4000/user"}
         postUrl={"http://localhost:4000/auth/register"}
         updateUrl={"http://localhost:4000/user/"} 
+        deleteUrl={"http://localhost:4000/user/"}
         col={{
             "ID": "_id", 
             "Rut": "rut",

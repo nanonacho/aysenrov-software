@@ -128,9 +128,12 @@ function CreateEmployee(props) {
                                 <label>Cargo</label>
                                 <select name="position" ref={position} className="form-select" aria-label="Default select example" onChange={handleChange}>
                                     <option value=""></option>
-                                    <option value="Piloto Rov">Piloto Rov</option>
-                                    <option value="Gerente">Gerente</option>
-                                    <option value="Jefe de Taller">Jefe de Taller</option>
+                                    <option value="PILOTO ROV">Piloto Rov</option>
+                                    <option value="GERENTE">Gerente</option>
+                                    <option value="JEFE TALLER">Jefe Taller</option>
+                                    <option value="JEFE OPERACIONES">Jefe Operaciones</option>
+                                    <option value="PRACTICANTE">Practicante</option>
+                                    <option value="PREVENCIONISTA">Prevencionista</option>
                                 </select>
                             </div>
                             <div className="form-group pt-3">

@@ -11,6 +11,14 @@ const auth = require("./routes/auth")
 const employee = require("./routes/employee")
 const employeeReport = require("./routes/employeeReport")
 const contract = require("./routes/contract")
+const product = require("./routes/product")
+const category = require("./routes/category")
+const customer = require("./routes/customer")
+const customerEmployee = require("./routes/customerEmployee")
+const productInAquaculture = require("./routes/productInAquaculture")
+const employeeInAquaculture = require("./routes/employeeInAquaculture")
+const aquaculture = require("./routes/aquaculture")
+const item = require("./routes/item")
 
 // Import middlewares
 //const verifytoken = require("./middlewares/validate-token")
@@ -27,14 +35,22 @@ mongoose
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     
-    //routes
+    // Routes
     app.use("/user", user)
     app.use("/auth", auth)
     app.use("/employee", employee)
     app.use("/employee-report", employeeReport)
     app.use("/contract", contract)
+    app.use("/product", product)
+    app.use("/category", category)
+    app.use("/customer", customer)
+    app.use("/customer-employee", customerEmployee)
+    app.use("/product-in-aquaculture", productInAquaculture)
+    app.use("/employee-in-aquaculture", employeeInAquaculture)
+    app.use("/aquaculture", aquaculture)
+    app.use("/item", item)
 
-    //server
+    // Connect to pg and open server
     pg.sync().then(() => {
       pg.authenticate().then(() => console.log("Conexión postgres exitosa ")).catch("Conexión postgres fallida")
       app.listen(port, () =>

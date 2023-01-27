@@ -16,6 +16,21 @@ exports.getProduct = async (req, res) => {
 }
 
 /*
+Functionality: Get all products by category_id 
+*/
+exports.getProductByCategory = async (req, res) => {
+    try {
+        const products = await Product.findAll({ where: {category_id : req.params.category_id }})
+        if (products == null) res.status(404).send({error: "Products not found", data: null})
+        else {
+            res.status(200).send({error: null, data: products})
+        }
+    } catch {
+        res.status(500).send({error: "Internal server error", data: null})
+    }
+}
+
+/*
 Functionality: Get all products 
 */
 exports.getProducts = async (req, res) => {
@@ -34,12 +49,7 @@ Functionality: Create a new product
 exports.postProduct = async (req, res) => {
     try {
         const product = new Product({
-            code: req.body.code,
-            name: req.body.name.toUpperCase(),
-            quantity: req.body.quantity,
-            condition: req.body.condition.toUpperCase(),
-            observation: req.body.observation,
-            category_id: req.body.category_id
+            name: req.body.name.toUpperCase()
         })
 
         await product.save()
@@ -57,7 +67,6 @@ exports.putProduct = async (req, res) => {
     try {
         const productUpdated = req.body
         if (req.body.name) productUpdated.name = req.body.name.toUpperCase()
-        if (req.body.condition) productUpdated.condition = req.body.name.toUpperCase()
 
         const product = await Product.update(productUpdated, { where: {id: req.params.id} })
         if (product == 1) res.status(200).send({error: null, data: product}) 

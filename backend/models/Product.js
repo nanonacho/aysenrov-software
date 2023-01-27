@@ -8,25 +8,9 @@ const Product = pg.define("product", {
         primaryKey: true,
         autoIncrement: true
     },
-    code: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
     name: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    quantity: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    condition: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    observation: {
-        type: Sequelize.STRING,
-        allowNull: true
     }
 })
 

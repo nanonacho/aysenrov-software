@@ -71,7 +71,7 @@ function Table(props) {
                                 {
                                     props.update && 
                                     <td>
-                                        <DeleteObject key={index} index={index} url={props.postUrl} handleReload={handleReload} objectId={object.id ? object.id : object._id}/>
+                                        <DeleteObject key={index} index={index} url={props.deleteUrl} handleReload={handleReload} objectId={object.id ? object.id : object._id}/>
                                     </td>    
                                 } 
                                 </tr>   

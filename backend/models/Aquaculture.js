@@ -32,4 +32,4 @@ Aquaculture.belongsTo(Customer, {
     }
   })
 
-module.exports = CustomerEmployee
+module.exports = Aquaculture
