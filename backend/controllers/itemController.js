@@ -52,7 +52,8 @@ exports.postItem = async (req, res) => {
             code: req.body.code,
             description: req.body.description,
             condition: req.body.condition.toUpperCase(),
-            observation: req.body.observation
+            observation: req.body.observation,
+            product_id: req.body.product_id
         })
 
         await item.save()

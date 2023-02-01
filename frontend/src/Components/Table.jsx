@@ -10,6 +10,8 @@ function Table(props) {
 
     const [reload, setReload] = useState(false)
 
+    const [selectedObject, setSelectedObject] = useState(null)
+
     const handleReload = () => setReload(reload => !reload)
 
     useEffect(() => {
@@ -33,52 +35,66 @@ function Table(props) {
                 ) 
                 : 
                 ( 
+                !selectedObject ? 
                 <div>
                     {
                     props.create && <CreateObject input={props.input} select={props.select} url={props.postUrl} handleReload={handleReload}/>
                     }
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                {
-                                    Object.keys(props.col).map((key, index) => 
-                                        <th scope="col" key={index}>{key}</th>
+                    {
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    {
+                                        Object.keys(props.col).map((key, index) => 
+                                            <th scope="col" key={index}>{key}</th>
+                                        )
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                objects.map((object, index) =>
+                                    <tr key={index}>
+                                    {
+                                    Object.keys(props.col).map((key, index) =>
+                                        <td key={index}>{object[props.col[key]]}</td>
                                     )
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            objects.map((object, index) =>
-                                <tr key={index}>
-                                {
-                                Object.keys(props.col).map((key, index) =>
-                                    <td key={index}>{object[props.col[key]]}</td>
+                                    }
+                                    {
+                                        props.pdfUrl && 
+                                        <td>
+                                            <PdfObject key={index} index={index} url={props.pdfUrl + (object.id ? object.id : object._id)} handleReload={handleReload} objectId={object.id ? object.id : object._id}/>
+                                        </td>    
+                                    } 
+                                    {
+                                        props.update && 
+                                        <td>
+                                            <UpdateObject key={index} index={index} input={props.input} select={props.select} url={props.updateUrl + (object.id ? object.id : object._id)} handleReload={handleReload} object={object}/>
+                                        </td>
+                                    }
+                                    {
+                                        props.update && 
+                                        <td>
+                                            <DeleteObject key={index} index={index} url={props.deleteUrl} handleReload={handleReload} objectId={object.id ? object.id : object._id}/>
+                                        </td>    
+                                    }
+                                    {
+                                        props.children &&
+                                        <td>
+                                            <button className="btn btn-primary" onClick={() => setSelectedObject(object)}>{props.childrenTitle}</button>
+                                        </td>
+                                    } 
+                                    </tr>   
                                 )
-                                }
-                                {
-                                    props.pdfUrl && 
-                                    <td>
-                                        <PdfObject key={index} index={index} url={props.pdfUrl + (object.id ? object.id : object._id)} handleReload={handleReload} objectId={object.id ? object.id : object._id}/>
-                                    </td>    
-                                } 
-                                {
-                                    props.update && 
-                                    <td>
-                                        <UpdateObject key={index} index={index} input={props.input} select={props.select} url={props.updateUrl + (object.id ? object.id : object._id)} handleReload={handleReload} object={object}/>
-                                    </td>
-                                }
-                                {
-                                    props.update && 
-                                    <td>
-                                        <DeleteObject key={index} index={index} url={props.deleteUrl} handleReload={handleReload} objectId={object.id ? object.id : object._id}/>
-                                    </td>    
-                                } 
-                                </tr>   
-                            )
-                        }
-                        </tbody>
-                    </table>
+                            }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+                :
+                <div className="">
+                    <button className="btn btn-danger" onClick={() => setSelectedObject(null)}>Cerrar</button>
+                    <props.children object={selectedObject}></props.children>
                 </div>
                 )
                 }  

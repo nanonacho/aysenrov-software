@@ -20,10 +20,6 @@ const Item = pg.define("item", {
     condition: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    observation: {
-        type: Sequelize.STRING,
-        allowNull: true
     }
 })
 

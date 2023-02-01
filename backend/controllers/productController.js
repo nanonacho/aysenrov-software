@@ -49,7 +49,8 @@ Functionality: Create a new product
 exports.postProduct = async (req, res) => {
     try {
         const product = new Product({
-            name: req.body.name.toUpperCase()
+            name: req.body.name.toUpperCase(),
+            category_id: req.body.category_id
         })
 
         await product.save()
