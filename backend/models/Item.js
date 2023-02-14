@@ -23,7 +23,7 @@ const Item = pg.define("item", {
     }
 })
 
-Product.hasOne(Item, {
+Product.hasMany(Item, {
     foreignKey: {
         name: "product_id",
         allowNull: false
@@ -37,17 +37,17 @@ Item.belongsTo(Product, {
     }
   })
 
-Aquaculture.hasOne(Item, {
+Aquaculture.hasMany(Item, {
     foreignKey: {
         name: "aquaculture_id",
-        allowNull: false
+        allowNull: true
     }
   })
 
 Item.belongsTo(Aquaculture, {
     foreignKey: {
         name: "aquaculture_id",
-        allowNull: false
+        allowNull: true
     }
   })
 module.exports = Item

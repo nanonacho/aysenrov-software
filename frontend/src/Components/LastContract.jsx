@@ -11,12 +11,12 @@ function LastContract(props) {
         updateUrl={"http://localhost:4000/contract/"}
         deleteUrl={"http://localhost:4000/contract/"}
         col={{
-            "ID": "id",
-            "Cargo": "position",
-            "Salario Base": "base_salary",
-            "Tipo": "type",
-            "Fecha Inicio": "start_date",
-            "Fecha Termino": "end_date"
+            "ID": ["id"],
+            "Cargo": ["position"],
+            "Salario Base": ["base_salary"],
+            "Tipo": ["type"],
+            "Fecha Inicio": ["start_date"],
+            "Fecha Termino": ["end_date"]
         }}
         input={{}}
         select={{}}

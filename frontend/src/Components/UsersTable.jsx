@@ -11,12 +11,12 @@ function UsersTable() {
         updateUrl={"http://localhost:4000/user/"} 
         deleteUrl={"http://localhost:4000/user/"}
         col={{
-            "ID": "_id", 
-            "Rut": "rut",
-            "Nombres": "name",
-            "Apellidos": "lastname",
-            "Email": "email",
-            "Permisos": "role"
+            "ID": ["_id"], 
+            "Rut": ["rut"],
+            "Nombres": ["name"],
+            "Apellidos": ["lastname"],
+            "Email": ["email"],
+            "Permisos": ["role"]
         }}
         input={{
             "rut": {

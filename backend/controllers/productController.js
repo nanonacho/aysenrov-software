@@ -1,11 +1,28 @@
 const Product = require("../models/Product")
+const Item = require("../models/Item")
+const Category = require("../models/Category")
+const Sequelize = require("sequelize")
 
 /*
 Functionality: Get one product by id 
 */
 exports.getProduct = async (req, res) => {
     try {
-        const product = await Product.findOne({ where: {id : req.params.id }})
+        const product = await Product.findOne({ 
+            where: {id : req.params.id},
+            attributes: { 
+                include: [
+                    [Sequelize.fn("COUNT", Sequelize.col("items.aquaculture_id")), "not_avail_stock"],
+                    [Sequelize.fn("COUNT", Sequelize.col("items.id")), "total_stock"]
+                ] 
+            },
+            include: [
+                {
+                    model: Item, attributes: [], required: false
+                }
+            ],
+            group: ["product.id"]
+        })
         if (product == null) res.status(404).send({error: "Product not found", data: null})
         else {
             res.status(200).send({error: null, data: product})
@@ -20,7 +37,21 @@ Functionality: Get all products by category_id
 */
 exports.getProductByCategory = async (req, res) => {
     try {
-        const products = await Product.findAll({ where: {category_id : req.params.category_id }})
+        const products = await Product.findAll({ 
+            where: {category_id : req.params.category_id}, 
+            attributes: { 
+                include: [
+                    [Sequelize.fn("COUNT", Sequelize.col("items.aquaculture_id")), "not_avail_stock"],
+                    [Sequelize.fn("COUNT", Sequelize.col("items.id")), "total_stock"]
+                ] 
+            },
+            include: [
+                {
+                    model: Item, attributes: [], required: false
+                }
+            ],
+            group: ["product.id"]
+        })
         if (products == null) res.status(404).send({error: "Products not found", data: null})
         else {
             res.status(200).send({error: null, data: products})
@@ -35,7 +66,21 @@ Functionality: Get all products
 */
 exports.getProducts = async (req, res) => {
     try {
-        const products = await Product.findAll()
+        const products = await Product.findAll({
+            attributes: { 
+                include: [
+                    [Sequelize.fn("COUNT", Sequelize.col("items.aquaculture_id")), "not_avail_stock"],
+                    [Sequelize.fn("COUNT", Sequelize.col("items.id")), "total_stock"]
+                ] 
+            },
+            include: [
+                {
+                    model: Item, attributes: [], required: false
+                }
+        ],
+            group: ["product.id"]
+        })
+        
         //setTimeout(() => {  res.status(200).send({error: null, data: users}) }, 5000);
         res.status(200).send({error: null, data: products})
     } catch {

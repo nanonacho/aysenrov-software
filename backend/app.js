@@ -19,6 +19,10 @@ const productInAquaculture = require("./routes/productInAquaculture")
 const employeeInAquaculture = require("./routes/employeeInAquaculture")
 const aquaculture = require("./routes/aquaculture")
 const item = require("./routes/item")
+const supplier = require("./routes/supplier")
+const purcharseType = require("./routes/purcharseType")
+const purcharseOrder = require("./routes/purcharseOrder")
+const purcharseLine = require("./routes/purcharseLine")
 
 // Import middlewares
 //const verifytoken = require("./middlewares/validate-token")
@@ -49,6 +53,10 @@ mongoose
     app.use("/employee-in-aquaculture", employeeInAquaculture)
     app.use("/aquaculture", aquaculture)
     app.use("/item", item)
+    app.use("/supplier", supplier)
+    app.use("/purcharse-type", purcharseType)
+    app.use("/purcharse-order", purcharseOrder)
+    app.use("/purcharse-line", purcharseLine)
 
     // Connect to pg and open server
     pg.sync().then(() => {

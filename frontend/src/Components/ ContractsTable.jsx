@@ -12,12 +12,15 @@ function ContractsTable(props) {
         updateUrl={"http://localhost:4000/contract/"}
         deleteUrl={"http://localhost:4000/contract/"}
         col={{
-            "ID": "id",
-            "Cargo": "position",
-            "Salario Base": "base_salary",
-            "Tipo": "type",
-            "Fecha Inicio": "start_date",
-            "Fecha Termino": "end_date"
+            "ID": ["id"],
+            "Cargo": ["position"],
+            "Salario Base": ["base_salary"],
+            "Tipo": ["type"],
+            "Fecha Inicio": ["start_date"],
+            "Fecha Termino": ["end_date"],
+            "Fecha de Firma": ["signature_date"],
+            "AFP": ["afp"],
+            "Salud": ["salud"]
         }}
         input={{
             "base_salary": {
@@ -31,9 +34,14 @@ function ContractsTable(props) {
                 "required": true
             },
             "end_date": {
-                "label": "Fecha Termino",
+                "label": "Fecha Termino (opcional)",
                 "type": "date",
                 "required": false
+            },
+            "signature_date": {
+                "label": "Fecha de Firma",
+                "type": "date",
+                "required": true
             },
             "employee_id": {
                 "label": "",
@@ -84,7 +92,45 @@ function ContractsTable(props) {
                         "value": "INDEFINIDO"
                     }
                 ]
-            }
+            },
+            "afp": {
+                "label": "AFP",
+                "options": [
+                    {
+                        "label": "HABITAT",
+                        "value": "HABITAT"
+                    },
+                    {
+                        "label": "PROVIDA",
+                        "value": "PROVIDA"
+                    },
+                    {
+                        "label": "MODELO",
+                        "value": "MODELO"
+                    },
+                    {
+                        "label": "PLAN VITAL",
+                        "value": "PLAN VITAL"
+                    },
+                    {
+                        "label": "CAPITAL",
+                        "value": "CAPITAL"
+                    }
+                ]
+            },
+            "salud": {
+                "label": "Salud",
+                "options": [
+                    {
+                        "label": "FONASA",
+                        "value": "FONASA"
+                    },
+                    {
+                        "label": "ISAPRE",
+                        "value": "ISAPRE"
+                    }
+                ]
+            },
         }}
         />
     )

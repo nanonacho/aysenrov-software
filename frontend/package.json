@@ -12,9 +12,13 @@
     "axios": "^1.2.2",
     "bootswatch": "^5.2.3",
     "chilean-rutify": "^2.1.0",
+    "moment": "^2.29.4",
+    "plotly.js": "^2.18.1",
     "react": "^18.2.0",
+    "react-big-calendar": "^1.6.3",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.42.1",
+    "react-plotly.js": "^2.6.0",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"

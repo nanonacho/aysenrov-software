@@ -1,3 +1,4 @@
+import CustomerContacts from "./CustomerContacts"
 import Table from "./Table"
 
 function CustomersTable() {
@@ -9,11 +10,13 @@ function CustomersTable() {
         postUrl={"http://localhost:4000/customer/"}
         updateUrl={"http://localhost:4000/customer/"}
         deleteUrl={"http://localhost:4000/customer/"}
+        children={CustomerContacts}
+        childrenTitle={"Contacto"}
         col={{
-            "ID": "id",
-            "Rut": "rut",
-            "Nombre": "name",
-            "Fecha Ingreso": "entry_date"
+            "ID": ["id"],
+            "Rut": ["rut"],
+            "Nombre": ["name"],
+            "Fecha Ingreso": ["entry_date"]
         }}
         input={{
             "rut": {

@@ -14,11 +14,11 @@ const Aquaculture = pg.define("aquaculture", {
     },
     location: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     }
 })
 
-Customer.hasOne(Aquaculture, {
+Customer.hasMany(Aquaculture, {
     foreignKey: {
         name: "customer_id",
         allowNull: false

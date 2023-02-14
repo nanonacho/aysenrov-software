@@ -34,7 +34,7 @@ const CustomerEmployee = pg.define("customer_employee", {
     }
 })
 
-Customer.hasOne(CustomerEmployee, {
+Customer.hasMany(CustomerEmployee, {
     foreignKey: {
         name: "customer_id",
         allowNull: false

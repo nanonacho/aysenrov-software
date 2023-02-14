@@ -1,3 +1,4 @@
+const Aquaculture = require("../models/Aquaculture")
 const Item = require("../models/Item")
 
 /*
@@ -20,7 +21,10 @@ Functionality: Get all items by product_id
 */
 exports.getItemByProduct = async (req, res) => {
     try {
-        const items = await Item.findAll({ where: {product_id : req.params.product_id }})
+        const items = await Item.findAll({ 
+            where: {product_id : req.params.product_id },
+            include: {model: Aquaculture, attributes: ["name"]}
+        })
         if (items == null) res.status(404).send({error: "Items not found", data: null})
         else {
             res.status(200).send({error: null, data: items})
@@ -49,11 +53,11 @@ Functionality: Create a new item
 exports.postItem = async (req, res) => {
     try {
         const item = new Item({
-            code: req.body.code,
-            description: req.body.description,
-            condition: req.body.condition.toUpperCase(),
-            observation: req.body.observation,
-            product_id: req.body.product_id
+            code: req.body.code == "" ? null : req.body.code,
+            description: req.body.description == "" ? null : req.body.description ,
+            condition: req.body.condition == "" ? null : req.body.condition.toUpperCase(),
+            product_id: req.body.product_id == "" ? null : req.body.product_id,
+            aquaculture_id: req.body.aquaculture_id == "" ? null : req.body.aquaculture_id
         })
 
         await item.save()

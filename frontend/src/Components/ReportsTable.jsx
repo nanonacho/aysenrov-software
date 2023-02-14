@@ -11,11 +11,11 @@ function ReportsTable(props) {
         updateUrl={"http://localhost:4000/employee-report/"}
         deleteUrl={"http://localhost:4000/employee-report/"}
         col={{
-            "ID": "id", 
-            "Fecha": "date",
-            "Cliente": "customer",
-            "Lugar": "place",
-            "Descripción": "description"
+            "ID": ["id"], 
+            "Fecha": ["date"],
+            "Cliente": ["customer"],
+            "Lugar": ["place"],
+            "Descripción": ["description"]
         }}
         input={{
             "date": {
@@ -43,8 +43,7 @@ function ReportsTable(props) {
                 "defaultValue": props.employee.id
             }
         }}
-        select={{
-        }}
+        select={{}}
         />
     )
 }

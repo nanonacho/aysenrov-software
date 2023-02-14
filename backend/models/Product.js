@@ -14,7 +14,7 @@ const Product = pg.define("product", {
     }
 })
 
-Category.hasOne(Product, {
+Category.hasMany(Product, {
     foreignKey: {
         name: "category_id",
         allowNull: false

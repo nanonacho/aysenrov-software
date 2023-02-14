@@ -36,7 +36,7 @@ Functionality: Find and update a category by id
 exports.putCategory = async (req, res) => {
     try {
         const categoryUpdated = req.body
-        if (req.body.category) categoryUpdated.name = req.body.name.toUpperCase()
+        if (req.body.name) categoryUpdated.name = req.body.name.toUpperCase()
 
         const category = await Category.update(categoryUpdated, { where: {id: req.params.id} })
         if (category == 1) res.status(200).send({error: null, data: category}) 

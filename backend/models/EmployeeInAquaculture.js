@@ -19,7 +19,7 @@ const EmployeeInAquaculture = pg.define("employee_in_aquaculture", {
     }
 })
 
-Employee.hasOne(EmployeeInAquaculture, {
+Employee.hasMany(EmployeeInAquaculture, {
     foreignKey: {
         name: "employee_id",
         allowNull: false
@@ -33,7 +33,7 @@ EmployeeInAquaculture.belongsTo(Employee, {
     }
   })
 
-Aquaculture.hasOne(EmployeeInAquaculture, {
+Aquaculture.hasMany(EmployeeInAquaculture, {
     foreignKey: {
         name: "aquaculture_id",
         allowNull: false

@@ -82,11 +82,11 @@ function UpdateEmployee(props) {
                 }
                 <div className="form-group pt-3">
                     <label>Rut</label>
-                    <input ref={rut} type="text" onChange={handleChange} name="rut" className="form-control" defaultValue={employee.rut}/>
+                    <input readonly ref={rut} type="text" onChange={handleChange} name="rut" className="form-control" defaultValue={employee.rut}/>
                 </div>
                 <div className="form-group pt-3">
                     <label>Nombres</label>
-                    <input type="text" ref={name} onChange={handleChange} name="name" className="form-control" defaultValue={employee.name} placeholder="Ingresa el nombre" />
+                    <input readonly type="text" ref={name} onChange={handleChange} name="name" className="form-control" defaultValue={employee.name} placeholder="Ingresa el nombre" />
                 </div>
                 <div className="form-group pt-3">
                     <label>Apellidos</label>
@@ -99,6 +99,10 @@ function UpdateEmployee(props) {
                 <div className="form-group pt-3">
                     <label>Teléfono</label>
                     <input type="tel" ref={phone_number} onChange={handleChange} name="phone_number" className="form-control" defaultValue={employee.phone_number} placeholder="Ingresa el teléfono"/>
+                </div>
+                <div className="form-group pt-3">
+                    <label>Ciudad</label>
+                    <input type="text" ref={city} onChange={handleChange} name="city" className="form-control" defaultValue={employee.city} placeholder="Ingresa la ciudad"/>
                 </div>
                 <div className="form-group pt-3">
                     <label>Dirección</label>
@@ -163,17 +167,6 @@ function UpdateEmployee(props) {
                     <div className="alert alert-primary" role="alert"> Usuario modificado</div>
                     )
                 }
-                <div className="form-group pt-3">
-                    { isLoading ? (
-                    <button type="button" className="btn btn-info">
-                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Modificar
-                    </button>
-                    ) : (
-                    <button className="btn btn-warning" onClick={(e) => handleSubmit(e, employee.id)}>Modificar</button>
-                    )
-                    }
-                </div>
             </form>
         </div>
     )

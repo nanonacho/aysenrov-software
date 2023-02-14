@@ -10,8 +10,8 @@ function CategoryTable(props) {
         updateUrl={"http://localhost:4000/category/"}
         deleteUrl={"http://localhost:4000/category/"}
         col={{
-            "ID": "id",
-            "Nombre": "name"
+            "ID": ["id"],
+            "Nombre": ["name"]
         }}
         input={{
             "name": {

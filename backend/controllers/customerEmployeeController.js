@@ -3,9 +3,9 @@ const CustomerEmployee = require("../models/CustomerEmployee")
 /*
 Functionality: Get all customer employees by customer_id
 */
-exports.getCustomerEmployee = async (req, res) => {
+exports.getCustomerEmployeesByCustomer = async (req, res) => {
     try {
-        const customerEmployees = await CustomerEmployee.findOne({ where: {customer_id : req.params.customer_id }})
+        const customerEmployees = await CustomerEmployee.findAll({ where: {customer_id : req.params.customer_id }})
         if (customerEmployees == null) res.status(404).send({error: "Customer employees not found", data: null})
         else {
             res.status(200).send({error: null, data: customerEmployees})
@@ -39,7 +39,8 @@ exports.postCustomerEmployee = async (req, res) => {
             rut: req.body.rut == "" ? null: ChileanRutify.formatRut(req.body.rut),
             phone_number: req.body.phone_number == "" ? null: req.body.phone_number,
             email: req.body.email == "" ? null: req.body.email,
-            position: req.body.position.toUpperCase() == "" ? null: req.body.position
+            position: req.body.position == "" ? null: req.body.position.toUpperCase(),
+            customer_id: req.body.customer_id == "" ? null: req.body.customer_id
         })
     
         await customerEmployee.save()

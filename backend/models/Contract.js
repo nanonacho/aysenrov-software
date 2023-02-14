@@ -42,7 +42,7 @@ const Contract = pg.define("contract", {
     }
 })
 
-Employee.hasOne(Contract, {
+Employee.hasMany(Contract, {
     foreignKey: {
         name: "employee_id",
         allowNull: false

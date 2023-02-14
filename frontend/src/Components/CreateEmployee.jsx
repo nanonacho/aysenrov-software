@@ -98,35 +98,35 @@ function CreateEmployee(props) {
                         <form>
                             <div className="form-group pt-3">
                                 <label>Rut</label>
-                                <input required type="text" ref={rut} onChange={handleChange} name="rut" className="form-control" placeholder="Ingresa el rut (con guión y sin puntos)" />
+                                <input required={true} type="text" ref={rut} onChange={handleChange} name="rut" className="form-control" placeholder="Ingresa el rut (con guión y sin puntos)" />
                             </div>
                             <div className="form-group pt-3">
                                 <label>Nombres</label>
-                                <input type="text" ref={name} onChange={handleChange} name="name" defaultValue="" className="form-control" placeholder="Ingresa el nombre" />
+                                <input required={true} type="text" ref={name} onChange={handleChange} name="name" defaultValue="" className="form-control" placeholder="Ingresa el nombre" />
                             </div>
                             <div className="form-group pt-3">
                                 <label>Apellidos</label>
-                                <input type="text" ref={lastname} onChange={handleChange} defaultValue="" name="lastname" className="form-control" placeholder="Ingresa el apellido"/>
+                                <input required={true} type="text" ref={lastname} onChange={handleChange} defaultValue="" name="lastname" className="form-control" placeholder="Ingresa el apellido"/>
                             </div>
                             <div className="form-group pt-3">
                                 <label>Email</label>
-                                <input type="email" ref={email} onChange={handleChange} defaultValue="" name="email" className="form-control" placeholder="Ingresa el email"/>
+                                <input required={true} type="email" ref={email} onChange={handleChange} defaultValue="" name="email" className="form-control" placeholder="Ingresa el email"/>
                             </div>
                             <div className="form-group pt-3">
                                 <label>Teléfono</label>
-                                <input type="tel" ref={phone_number} onChange={handleChange} name="phone_number" className="form-control" placeholder="Ingresa el teléfono"/>
+                                <input required={true} type="tel" ref={phone_number} onChange={handleChange} name="phone_number" className="form-control" placeholder="Ingresa el teléfono"/>
                             </div>
                             <div className="form-group pt-3">
                                 <label>Ciudad</label>
-                                <input type="text" ref={city} onChange={handleChange} name="city" className="form-control" placeholder="Ingresa la ciudad"/>
+                                <input required={true} type="text" ref={city} onChange={handleChange} name="city" className="form-control" placeholder="Ingresa la ciudad"/>
                             </div>
                             <div className="form-group pt-3">
                                 <label>Dirección</label>
-                                <input type="text" ref={address} onChange={handleChange} name="address" className="form-control" placeholder="Ingresa la dirección"/>
+                                <input required={true} type="text" ref={address} onChange={handleChange} name="address" className="form-control" placeholder="Ingresa la dirección"/>
                             </div>
                             <div className="form-group pt-3">
                                 <label>Cargo</label>
-                                <select name="position" ref={position} className="form-select" aria-label="Default select example" onChange={handleChange}>
+                                <select required={true} name="position" ref={position} className="form-select" aria-label="Default select example" onChange={handleChange}>
                                     <option value=""></option>
                                     <option value="PILOTO ROV">Piloto Rov</option>
                                     <option value="GERENTE">Gerente</option>
@@ -138,11 +138,11 @@ function CreateEmployee(props) {
                             </div>
                             <div className="form-group pt-3">
                                 <label>Fecha Ingreso</label>
-                                <input type="date" ref={entry_date} onChange={handleChange} name="entry_date" className="form-control" placeholder="Ingresa la fecha de ingreso a la empresa"/>
+                                <input required={true} type="date" ref={entry_date} onChange={handleChange} name="entry_date" className="form-control" placeholder="Ingresa la fecha de ingreso a la empresa"/>
                             </div>
                             <div className="form-group pt-3">
                                 <label>Fecha Nacimiento</label>
-                                <input type="date" ref={birth_date} onChange={handleChange} name="birth_date" className="form-control" placeholder="Ingresa la fecha de nacimiento"/>
+                                <input required={true} type="date" ref={birth_date} onChange={handleChange} name="birth_date" className="form-control" placeholder="Ingresa la fecha de nacimiento"/>
                             </div>
                             <div className="form-group pt-3">
                                 <label>AFP</label>
@@ -153,7 +153,6 @@ function CreateEmployee(props) {
                                     <option value="MODELO">MODELO</option>
                                     <option value="PLAN VITAL">PLAN VITAL</option>
                                     <option value="CAPITAL">CAPITAL</option>
-                                    <option value="MODELO">UNO</option>
                                 </select>
                             </div>
                             <div className="form-group pt-3">

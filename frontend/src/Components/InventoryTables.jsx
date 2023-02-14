@@ -7,14 +7,23 @@ import { Autocomplete, TextField } from "@mui/material"
 
 function InventoryTables() {
     const [categories, setCategories] = useState([])
+    const [products, setProducts] = useState([])
     const [selectedCategory, setSelectedCategory] = useState(null)
+    const [selectedProduct, setSelectedProduct] = useState(null)
 
     useEffect(() => {
         axios("http://localhost:4000/category/", {method: "GET"})
         .then(res => {
             setCategories(res.data.data)
         })
+
+        axios("http://localhost:4000/product/", {method: "GET"})
+        .then(res => {
+            setProducts(res.data.data)
+        })
+
     }, [])
+
     return (
         
         <div className="row justify-content-center">
@@ -26,15 +35,26 @@ function InventoryTables() {
             getOptionLabel={option => option.name}
             onChange={(e, selectedCategory) => setSelectedCategory(selectedCategory)}
             sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Buscar Categoría" />}
+            renderInput={(params) => <TextField {...params} label="Filtrar por Categoría" />}
+            />
+            <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={products}
+            getOptionLabel={option => option.name + " | " + option.id}
+            onChange={(e, selectedProduct) => setSelectedProduct(selectedProduct)}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Buscar Producto" />}
             />
             </div>
-                {selectedCategory ?
-                        <div className="card m-2" key={selectedCategory.id}>
-                            <div className="card-header">
-                                {selectedCategory.name}
-                            </div>
-                            <div className="card-body">
+            {selectedProduct ? 
+                <div>
+                    <button className="btn btn-danger" onClick={() => setSelectedProduct(null)}>Cerrar</button>
+                    <ProductProfile object={selectedProduct}/>
+                </div>
+            :
+                selectedCategory ?
+                        <div className="" key={selectedCategory.id}>
                                 <Table
                                 key={selectedCategory.id}
                                 create={true}
@@ -46,32 +66,35 @@ function InventoryTables() {
                                 children={ProductProfile}
                                 childrenTitle={"Stock"}
                                 col={{
-                                    "ID": "id",
-                                    "Nombre": "name"
+                                    "ID": ["id"],
+                                    "Categoría": ["category_id"],
+                                    "Nombre": ["name"],
+                                    "Stock Total": ["total_stock"],
+                                    "Stock Ocupado" : ["not_avail_stock"]
                                 }}
                                 input={{
                                     "name": {
                                         "label": "Nombre",
                                         "type": "text",
                                         "required": true
-                                    },
-                                    "category_id": {
-                                        "label": "",
-                                        "type": "hidden",
-                                        "required": true,
-                                        "defaultValue": selectedCategory.id
                                     }
                                 }}
-                                select={{}}
+                                select={{
+                                    "category_id": {
+                                        "label": "Categoría",
+                                        "required": true,
+                                        "options": categories.map(category => {
+                                            const categ = {}
+                                            categ["label"] = category.name
+                                            categ["value"] = category.id
+                                            return categ 
+                                        })
+                                    }
+                                }}
                                 />         
-                            </div>    
                         </div> 
                         :
-                        <div className="card m-2">
-                            <div className="card-header">
-                                Todos
-                            </div>
-                            <div className="card-body">
+                        <div className="">
                                 <Table
                                 create={true}
                                 update={true}
@@ -82,27 +105,36 @@ function InventoryTables() {
                                 children={ProductProfile}
                                 childrenTitle={"Stock"}
                                 col={{
-                                    "ID": "id",
-                                    "Nombre": "name"
+                                    "ID": ["id"],
+                                    "Categoría": ["category_id"],
+                                    "Nombre": ["name"],
+                                    "Stock Total": ["total_stock"],
+                                    "Stock Ocupado" : ["not_avail_stock"]
                                 }}
                                 input={{
                                     "name": {
                                         "label": "Nombre",
                                         "type": "text",
                                         "required": true
-                                    },
-                                    "category_id": {
-                                        "label": "",
-                                        "type": "hidden",
-                                        "required": true
                                     }
                                 }}
-                                select={{}}
+                                select={{
+                                    "category_id": {
+                                        "label": "Categoría",
+                                        "required": true,
+                                        "options": categories.map(category => {
+                                            const categ = {}
+                                            categ["label"] = category.name
+                                            categ["value"] = category.id
+                                            return categ 
+                                        })
+                                    }
+                                }}
                                 />         
-                            </div>    
+                              
                         </div>
                 }
-        </div>
+        </div>                                                                                                          
     )
 }
 

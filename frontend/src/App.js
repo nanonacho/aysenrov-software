@@ -8,6 +8,10 @@ import Contracts from "./Routes/Contracts"
 import Inventory from "./Routes/Inventory"
 import Category from "./Routes/Category"
 import Customers from "./Routes/Customers"
+import Aquacultures from "./Routes/Aquacultures"
+import Suppliers from "./Routes/Suppliers"
+import PurcharseType from "./Routes/PurcharseType"
+import PurcharseOrders from "./Routes/PurcharseOrders"
 
 function App() {
   return (
@@ -35,6 +39,14 @@ function App() {
             </Route> 
             <Route element={<ProtectedRoutes allowedRoles={[1111]}/>}>
               <Route path="/customers" element={ <Customers/> } />
+              <Route path="/aquacultures" element={ <Aquacultures/> } />
+            </Route> 
+            <Route element={<ProtectedRoutes allowedRoles={[1111]}/>}>
+              <Route path="/suppliers" element={ <Suppliers/> } />
+            </Route> 
+            <Route element={<ProtectedRoutes allowedRoles={[1111]}/>}>
+              <Route path="/purcharse-type" element={ <PurcharseType/> } />
+              <Route path="/purcharse-orders" element={ <PurcharseOrders/> } />
             </Route> 
           </Routes>
         </AuthProvider>

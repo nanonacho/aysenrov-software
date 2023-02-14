@@ -12,7 +12,10 @@ function Table(props) {
 
     const [selectedObject, setSelectedObject] = useState(null)
 
-    const handleReload = () => setReload(reload => !reload)
+    const handleReload = () => {
+        setReload(reload => !reload)
+        props.handleReload && props.handleReload()
+    }
 
     useEffect(() => {
         axios(props.getUrl, {method: "GET"})
@@ -49,6 +52,18 @@ function Table(props) {
                                             <th scope="col" key={index}>{key}</th>
                                         )
                                     }
+                                    {
+                                        props.children && <th></th>
+                                    }
+                                    {
+                                        props.pdfUrl && <th></th>
+                                    }
+                                    {
+                                        props.update && <th></th>
+                                    }
+                                    {
+                                        props.update && <th></th>
+                                    }
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,9 +71,16 @@ function Table(props) {
                                 objects.map((object, index) =>
                                     <tr key={index}>
                                     {
-                                    Object.keys(props.col).map((key, index) =>
-                                        <td key={index}>{object[props.col[key]]}</td>
+                                    Object.keys(props.col).map((key, index) => 
+                                        key.toLowerCase().includes("fecha") ? <td key={index}>{props.col[key][1] && object[props.col[key][0]] ? new Date(object[props.col[key][0]][props.col[key][1]]).toLocaleDateString("es-CL", {timeZone: 'UTC'}) : new Date(object[props.col[key][0]]).toLocaleDateString("es-CL", {timeZone: 'UTC'})}</td> : <td key={index}>{props.col[key][1] && object[props.col[key][0]] ? object[props.col[key][0]][props.col[key][1]] : object[props.col[key][0]]}</td>
+                                    
                                     )
+                                    }
+                                    {
+                                        props.children &&
+                                        <td>
+                                            <button className="btn btn-primary" onClick={() => setSelectedObject(object)}>{props.childrenTitle}</button>
+                                        </td>
                                     }
                                     {
                                         props.pdfUrl && 
@@ -78,12 +100,7 @@ function Table(props) {
                                             <DeleteObject key={index} index={index} url={props.deleteUrl} handleReload={handleReload} objectId={object.id ? object.id : object._id}/>
                                         </td>    
                                     }
-                                    {
-                                        props.children &&
-                                        <td>
-                                            <button className="btn btn-primary" onClick={() => setSelectedObject(object)}>{props.childrenTitle}</button>
-                                        </td>
-                                    } 
+                                     
                                     </tr>   
                                 )
                             }
@@ -93,7 +110,7 @@ function Table(props) {
                 </div>
                 :
                 <div className="">
-                    <button className="btn btn-danger" onClick={() => setSelectedObject(null)}>Cerrar</button>
+                    <button className="btn btn-danger mb-3" onClick={() => setSelectedObject(null)}>Cerrar</button>
                     <props.children object={selectedObject}></props.children>
                 </div>
                 )

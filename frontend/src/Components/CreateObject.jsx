@@ -36,6 +36,7 @@ function CreateObject(props) {
     Object.keys(props.input).map((key) => {
         if (props.input[key].type != "hidden") resetValues[key] = ""
     })
+    Object.keys(props.select).map((key) => resetValues[key] = "")
 
     const handleClose = () => {
         setIsLoading(false)
@@ -88,8 +89,8 @@ function CreateObject(props) {
                             Object.keys(props.select).map((key, index) =>
                                 <div className="form-group pt-3" key={index}>
                                     <label>{props.select[key].label}</label>
-                                    <select {...register(key)} name={key} className="form-select" aria-label="Default select example">
-                                        <option> Seleccione una opción</option>
+                                    <select {...register(key)} name={key} required={props.select[key].required} className="form-select" aria-label="Default select example">
+                                        <option></option>
                                         {
                                         props.select[key].options.map((option, index) => 
                                             <option value={option.value} key={index}>{option.label}</option>

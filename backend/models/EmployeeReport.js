@@ -26,7 +26,7 @@ const EmployeeReport = pg.define("employee_report", {
     }
 })
 
-Employee.hasOne(EmployeeReport, {
+Employee.hasMany(EmployeeReport, {
     foreignKey: {
         name: "employee_id",
         allowNull: false

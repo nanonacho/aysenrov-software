@@ -35,29 +35,49 @@ function Header() {
                         </li>
                     )}
                     {auth?.user?.role === 1111 && (
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="employees">Trabajadores</Link>
+                        <li class="nav-item dropdown">
+                            <Link class="nav-link dropdown-toggle active" to="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Recursos Humanos
+                            </Link>
+                            <ul class="dropdown-menu">
+                                <li><Link class="dropdown-item" to="employees">Trabajadores</Link></li>
+                                <li><Link class="dropdown-item" to="contracts">Contratos</Link></li>
+                            </ul>
                         </li>
                     )}
                     {auth?.user?.role === 1111 && (
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="contracts">Contratos</Link>
-                        </li>
+                        <li class="nav-item dropdown">
+                        <Link class="nav-link dropdown-toggle active" to="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Taller
+                        </Link>
+                        <ul class="dropdown-menu">
+                            <li><Link class="dropdown-item" to="inventory">Inventario</Link></li>
+                            <li><Link class="dropdown-item" to="categories">Categorias</Link></li>
+                        </ul>
+                    </li>
                     )}
                     {auth?.user?.role === 1111 && (
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="categories">Categorias</Link>
-                        </li>
+                        <li class="nav-item dropdown">
+                        <Link class="nav-link dropdown-toggle active" to="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Operaciones
+                        </Link>
+                        <ul class="dropdown-menu">
+                            <li><Link class="dropdown-item" to="customers">Clientes</Link></li>
+                            <li><Link class="dropdown-item" to="aquacultures">Centros</Link></li>
+                            <li><Link class="dropdown-item" to="suppliers">Proveedores</Link></li>
+                        </ul>
+                    </li>
                     )}
                     {auth?.user?.role === 1111 && (
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="inventory">Inventario</Link>
-                        </li>
-                    )}
-                    {auth?.user?.role === 1111 && (
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="customers">Clientes</Link>
-                        </li>
+                        <li class="nav-item dropdown">
+                        <Link class="nav-link dropdown-toggle active" to="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Contabilidad
+                        </Link>
+                        <ul class="dropdown-menu">
+                            <li><Link class="dropdown-item" to="purcharse-type">Tipos de Gastos</Link></li>
+                            <li><Link class="dropdown-item" to="purcharse-orders">Gastos</Link></li>
+                        </ul>
+                    </li>
                     )}
                     </ul>
                     {auth.user && (

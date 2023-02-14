@@ -9,7 +9,7 @@ const Category = pg.define("category", {
     },
     name: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     }
 })
 

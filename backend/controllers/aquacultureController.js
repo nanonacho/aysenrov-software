@@ -1,4 +1,6 @@
 const Aquaculture = require("../models/Aquaculture")
+const Customer = require("../models/Customer")
+const Sequelize = require("sequelize")
 
 /*
 Functionality: Get all aquacultures by customer_id 
@@ -20,7 +22,9 @@ Functionality: Get all aquacultures
 */
 exports.getAquacultures = async (req, res) => {
     try {
-        const aquacultures = await Aquaculture.findAll()
+        const aquacultures = await Aquaculture.findAll({
+            include: {model: Customer, attributes: ["name"]}
+        })
         //setTimeout(() => {  res.status(200).send({error: null, data: users}) }, 5000);
         res.status(200).send({error: null, data: aquacultures})
     } catch {
@@ -35,7 +39,7 @@ exports.postAquaculture = async (req, res) => {
     try {
         const aquaculture = new Aquaculture({
             name: req.body.name.toUpperCase(),
-            location: req.body.name.toUpperCase(),
+            location: req.body.location.toUpperCase(),
             customer_id: req.body.customer_id
         })
     
@@ -54,7 +58,7 @@ exports.putAquaculture = async (req, res) => {
     try {
         const aquacultureUpdated = req.body
         if (req.body.name) aquacultureUpdated.name = req.body.name.toUpperCase()
-        if (req.body.position) aquacultureUpdated.position = req.body.position.toUpperCase()
+        if (req.body.location) aquacultureUpdated.location = req.body.location.toUpperCase()
         
         const aquaculture = await Aquaculture.update(aquacultureUpdated, { where: {id: req.params.id} })
         if (aquaculture == 1) res.status(200).send({error: null, data: aquaculture}) 

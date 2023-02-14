@@ -77,8 +77,8 @@ function EmployeesTable() {
                                     <td>{employee.phone_number}</td> 
                                     <td>{employee.email}</td>
                                     <td>{employee.position}</td>
-                                    <td>{employee.entry_date}</td>
-                                    <td>{employee.birth_date}</td>
+                                    <td>{new Date(employee.entry_date).toLocaleDateString("es-CL", {timeZone: 'UTC'})}</td>
+                                    <td>{new Date(employee.birth_date).toLocaleDateString("es-CL", {timeZone: 'UTC'})}</td>
                                     <td>
                                         <button className="btn btn-primary" onClick={() => handleProfile(employee)}> Perfil </button>
                                     </td>

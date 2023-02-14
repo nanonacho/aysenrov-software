@@ -83,7 +83,7 @@ function UpdateObject(props) {
                                 <div className="form-group pt-3" key={index}>
                                     <label>{props.select[key].label}</label>
                                     <select {...register(key)} defaultValue={props.object[key]} name={key} className="form-select" aria-label="Default select example">
-                                        <option> Seleccione una opción</option>
+                                        <option></option>
                                         {
                                         props.select[key].options.map((option, index) => 
                                             <option value={option.value} key={index}>{option.label}</option>

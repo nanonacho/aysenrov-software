@@ -23,7 +23,7 @@ const ProductInAquaculture = pg.define("product_in_aquaculture", {
     }
 })
 
-Product.hasOne(ProductInAquaculture, {
+Product.hasMany(ProductInAquaculture, {
     foreignKey: {
         name: "product_id",
         allowNull: false
@@ -37,7 +37,7 @@ ProductInAquaculture.belongsTo(Product, {
     }
   })
 
-Aquaculture.hasOne(ProductInAquaculture, {
+Aquaculture.hasMany(ProductInAquaculture, {
     foreignKey: {
         name: "aquaculture_id",
         allowNull: false
